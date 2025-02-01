@@ -1,22 +1,15 @@
-import java.io.Serializable;
-
-public class Role implements Serializable {//PARENT CLASS
+public class Role{//PARENT CLASS
 	/**
 	 *
 	/*
 	 * title
-	 * hours Worked
+	 * hours Worked*** might remove))
 	 * salary
-	 * 
-	 * salary class inherits from Role class 
-	 * status class inherits from Role class 
 	 * 
 	 * */
 	private String title;
 	private int hoursW;
 	private String salary;
-
-	private static final long serialVersionUID = 1L;
 	
 	public Role() {
 		//null constructor
@@ -26,6 +19,13 @@ public class Role implements Serializable {//PARENT CLASS
 		this.title = title;
 		this.hoursW = hoursW;
 		this.salary = salary;
+	}
+	
+	public void printRoleDetails() {
+		System.out.println("Job Title: " + getTitle());
+		System.out.println("Hours: " + getHoursW());
+		System.out.println("Salary: " +getSalary());
+		System.out.println("-------------------------------------");
 	}
 
 	public String getTitle() {

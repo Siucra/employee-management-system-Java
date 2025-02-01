@@ -19,21 +19,33 @@ public class Employee {
 	private String name;
 	private int age;
 	private String gender;
-	//private Role role;
-	//private salary; OBJECT
-	//private status;OBJECT
+	private String status; //junior, senior
+	private Role role;
+	//private type Type (part time, full time INHERITED CLASS)
 	
 	
 	public Employee() {
 		//null constructor
 	}
-	public Employee(int employeeID,String name, int age, String gender) {
+	public Employee(int employeeID,String name, int age, String gender, String status, Role role) {
 		this.employeeID = employeeID;
 		this.name = name;
 		this.age = age;
 		this.gender = gender;
+		this.status = status;
+		this.role = role;
 	}
 	
+	public void viewEmployeeDetails(){//able to access instance variables too (non static method)
+		System.out.println("-------------------------------------");
+		System.out.println("ID: " + getEmployeeID());
+		System.out.println("Name: " +getName());
+		System.out.println("Age: "+ getAge());
+		System.out.println("Sex: "+getGender());
+		System.out.println("Status: " + getStatus());
+		role.printRoleDetails();//using instance object to call printRoleDetails in Role class
+		
+	}
 	
 	public int getEmployeeID() {
 		return employeeID;
@@ -65,6 +77,22 @@ public class Employee {
 	
 	public void setGender(String gender) {
 		this.gender = gender;
+	}
+	
+	public String getStatus() {
+		return status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	public Role getRole() {
+		return role;
+	}
+	
+	public void setRole(Role role) {
+		this.role = role;
 	}
 	
 	
