@@ -13,6 +13,12 @@ public class Application {
 	 * Status - penalty points etc CHILD
 	 * Desc - physical appearance etc CHILD(maybe unneeded)
 	 * 
+	 * 
+	 * Types of employees: (inheritance?)
+	 * part time 
+	 * full time
+	 * intern
+	 * 
 	 */
 	
 	public static void main(String[]args) {
@@ -21,7 +27,15 @@ public class Application {
 	}
 	
 	public static void prepopulate() {
+		
+		//role and employee prepopulated seperately since there is no inheritance
+		Role r1 = new Role("Maintenance",60,"50000");
 		//prepopulate employees
+		Employee bob = new Employee(001,"Bob",59,"Male","Senior",r1);
+		
+		bob.viewEmployeeDetails();
+		
+		
 		
 	}
 }
