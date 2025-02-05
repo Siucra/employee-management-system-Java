@@ -1,5 +1,10 @@
+import java.io.Serializable;
 
-public class Employee {
+public class Employee implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/*
 	 * -add employee
 	 * -edit employee: role, salary, status
@@ -44,7 +49,8 @@ public class Employee {
 		System.out.println("Sex: "+getGender());
 		System.out.println("Status: " + getStatus());
 		role.printRoleDetails();//using instance object to call printRoleDetails in Role class
-		
+		//if statement here for part or full employee to print
+		//PartEmployee.printPartEmployee();
 	}
 	
 	public int getEmployeeID() {
