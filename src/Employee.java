@@ -1,9 +1,10 @@
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Employee implements Serializable {
 	/**
 	 * 
-	 */
+	 *
 	private static final long serialVersionUID = 1L;
 	/*
 	 * -add employee
@@ -20,6 +21,7 @@ public class Employee implements Serializable {
 	 * - gender
 	 * ---should these be inherited?
 	 * */
+	
 	private int employeeID;
 	private String name;
 	private int age;
@@ -41,16 +43,22 @@ public class Employee implements Serializable {
 		this.role = role;
 	}
 	
-	public void viewEmployeeDetails(){//able to access instance variables too (non static method)
-		System.out.println("-------------------------------------");
-		System.out.println("ID: " + getEmployeeID());
-		System.out.println("Name: " +getName());
-		System.out.println("Age: "+ getAge());
-		System.out.println("Sex: "+getGender());
-		System.out.println("Status: " + getStatus());
-		role.printRoleDetails();//using instance object to call printRoleDetails in Role class
-		//if statement here for part or full employee to print
-		//PartEmployee.printPartEmployee();
+	//public void showAllEmployee() {
+		
+	//}
+	
+	public void viewEmployeeDetails(){
+		for(Employee e : Application.employeeDirectory) {
+			System.out.println("-------------------------------------");
+			System.out.println("ID: " + e.getEmployeeID());
+			System.out.println("Name: " +e.getName());
+			System.out.println("Age: "+ e.getAge());
+			System.out.println("Sex: "+e.getGender());
+			System.out.println("Status: " + e.getStatus());
+			role.printRoleDetails();//using instance object to call printRoleDetails in Role class
+			//if statement here for part or full employee to print
+			//PartEmployee.printPartEmployee();
+			}
 	}
 	
 	public int getEmployeeID() {

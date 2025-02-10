@@ -15,6 +15,7 @@ public class Role{//PARENT CLASS
 	}
 
 	public Role(String title,String salary) {
+		//super();
 		this.title = title;
 		this.salary = salary;
 	}
