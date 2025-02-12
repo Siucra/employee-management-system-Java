@@ -35,7 +35,7 @@ public class Application {
 	
 	public static void main(String[]args) {
 
-		prepopulate();
+		//prepopulate();
 		employeeMenu();
 	}
 	
@@ -95,7 +95,8 @@ public class Application {
 				break;
 			}
 			case 4:{
-				System.out.println("Loading...");	
+				System.out.println("Loading...");
+				//viewEmployeeDetails();
 				break;
 			}
 			default:{
@@ -104,6 +105,7 @@ public class Application {
 			}
 			
 		}
+		employeeMenu();
 	}
 
 	public static void addEmployeeMenu() throws IOException{
@@ -133,10 +135,8 @@ public class Application {
                 System.out.println("Invalid input. Please enter 'Male' or 'Female'.");
             }
         }
-		
 
 		//Role r = new Role();//instantiating so we can access Role class INSTANTIATION	
-		
 		
 		while (true) {
 			System.out.println("Enter Employee status: Junior/Senior");
@@ -147,8 +147,13 @@ public class Application {
 				else {
 					System.out.println("Invalid input. Please try again.");
 				}
-			
 			}
+		Role role = new Role();
+		System.out.println("Enter Employee Job Title");
+		role.setTitle(input.next());
+		
+		System.out.println("Enter Employee annual salary");
+		role.setSalary(input.next());
 		
 		while(true) {
 			System.out.println("---------------------------------------------------");
@@ -159,7 +164,7 @@ public class Application {
 			if(empType.equalsIgnoreCase("Part")){
 					System.out.println("u selected part");
 					PartEmployee part = new PartEmployee();
-					System.out.println("");
+					addPartEmployee(e, part, role);
 				}
 				else if(empType.equalsIgnoreCase("Full")) {
 					System.out.println("u selected full");
@@ -171,18 +176,75 @@ public class Application {
 				}
 				else {
 					System.out.println("Invalid input. Please try again.");
-				}
+				}	
 		}
 		
 		
-		//System.out.println("Enter Employee job title");
-		//e.setSalary();
-		//e.setStatus(input.next());
-		
-		//System.out.println("Enter Employee annual salary");
-		
-		//System.out.println("------------------------------");
+		//System.out.println(" " + e.getEmployeeID());
 	}
+	
+	public static void addPartEmployee(Employee e,Employee part, Role role) {
+		
+		System.out.println("Add part time hours; must be 15-30");
+		int pthInput = input.nextInt();
+		
+		//check if user input is between 15-30
+			if(pthInput<15 || pthInput>30) {
+				System.out.println("Invalid hours. Please try again.");
+			}
+			else {
+				//casting - gives Employee access to subclass PartEmployee by treating super() as subclass
+				((PartEmployee) part).setPartHours(pthInput);
+			}
+			
+		System.out.println("Enter amount per hour.");
+		((PartEmployee) part).setPartAmHour(input.nextDouble());
+
+		 System.out.println(((PartEmployee) part).getPartHours());
+
+		//print all input info and confirm if user wants to add
+		 addPartEmpConfirmation(e, part, role);
+	}
+
+	private static void addPartEmpConfirmation(Employee e, Employee part, Role role) {
+		System.out.println("*".repeat(20));//repeat * 20 times
+		
+		System.out.println("ID: "+ e.getEmployeeID() );
+		System.out.println("Name: " + e.getName());
+		System.out.println("Age: " + e.getAge());
+		System.out.println("Gender: " + e.getGender());
+		System.out.println("Status: " + e.getStatus());
+		System.out.println("Title: " + role.getTitle());
+		System.out.println("Salary: "+ role.getSalary());
+		System.out.println("Hours: " + ((PartEmployee) part).getPartHours());
+		System.out.println("Amount per Hour: " + ((PartEmployee)part).getPartAmHour());
+		System.out.println("*".repeat(20));
+		
+		System.out.println("Are you sure you want to add "+e.getName() + " as an employee?");
+		System.out.println("1 - YES");
+		System.out.println("2 - NO");
+		switch(input.next()) {
+			case"1":{
+				
+				System.out.println(e.getName()+ " has been added to the Employee Directory");
+				employeeDirectory.add(e);
+				//e.viewEmployeeDetails();
+				//employeeMenu();
+				break;
+			}
+			case"2":{
+				
+				break;
+			}
+			default:{
+				
+				break;
+			}
+			
+		}
+		
+	}
+
 		
 	
 }
