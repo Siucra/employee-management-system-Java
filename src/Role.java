@@ -20,10 +20,7 @@ public class Role{//PARENT CLASS
 		this.salary = salary;
 	}
 	
-	public void printRoleDetails() {
-		System.out.println("Job Title: " + getTitle());
-		System.out.println("Salary: " +getSalary());
-	}
+
 
 	public String getTitle() {
 		return title;

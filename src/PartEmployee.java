@@ -21,14 +21,7 @@ public class PartEmployee extends Employee {
 	        this.partHours = partHours;
 	        this.partAmHour = partAmHour;
 	    }
-	   
-	   //override the viewEmployeeDetails  from Employee class (Polymorphism)
-	   public void viewEmployeeDetails() {
-		   super.viewEmployeeDetails();
-		   System.out.println("Part time hours: " + getPartHours());
-		   System.out.println("Amount per hour: "+ getPartAmHour());
-		   System.out.println("-------------------------------------");
-	   }
+	  
 
 	public int getPartHours() {
 		return partHours;

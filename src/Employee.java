@@ -48,17 +48,40 @@ public class Employee implements Serializable {
 	//}
 	
 	public void viewEmployeeDetails(){
-		for(Employee e : Application.employeeDirectory) {
+		//for(Employee e : Application.employeeDirectory) {
 			System.out.println("-------------------------------------");
-			System.out.println("ID: " + e.getEmployeeID());
-			System.out.println("Name: " +e.getName());
-			System.out.println("Age: "+ e.getAge());
-			System.out.println("Sex: "+e.getGender());
-			System.out.println("Status: " + e.getStatus());
-			role.printRoleDetails();//using instance object to call printRoleDetails in Role class
-			//if statement here for part or full employee to print
-			//PartEmployee.printPartEmployee();
+			System.out.println("ID: " + this.getEmployeeID());
+			System.out.println("Name: " +this.getName());
+			System.out.println("Age: "+ this.getAge());
+			System.out.println("Sex: "+this.getGender());
+			System.out.println("Status: " + this.getStatus());
+			
+			if(this.role != null) {
+				//only print if there is values in role
+				System.out.println("Job Title: " + this.role.getTitle());
+				System.out.println("Salary: " +this.role.getSalary());
 			}
+			else {//if there is no values in roll
+				System.out.println("No role assigned.");
+			}
+			
+			//instanceof checks whether an object is an instance of a specific class or a subclass
+			//if statement for part or full employee to print
+			if(this instanceof PartEmployee) {
+				System.out.println("Part-time Hours: "+ ((PartEmployee)this).getPartHours());
+				System.out.println("Hourly Rate: " + ((PartEmployee)this).getPartAmHour());
+			}
+			else if(this instanceof FullEmployee) {
+				System.out.println("Full-time Hours: "+((FullEmployee)this).getFullHours());
+				System.out.println("Hourly Rate: " + ((FullEmployee)this).getFullAmHour());
+			}
+			//
+			System.out.println("-----------------------------------------");
+			
+			//role.printRoleDetails();//using instance object to call printRoleDetails in Role class
+			
+			//PartEmployee.printPartEmployee();
+			//}
 	}
 	
 	public int getEmployeeID() {

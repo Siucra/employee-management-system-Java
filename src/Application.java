@@ -227,7 +227,11 @@ public class Application {
 			case"1":{
 				
 				System.out.println(e.getName()+ " has been added to the Employee Directory");
+				
 				employeeDirectory.add(e);
+				employeeDirectory.add(part);
+				
+				//need to view if all info is added
 				//e.viewEmployeeDetails();
 				//employeeMenu();
 				break;
@@ -237,7 +241,7 @@ public class Application {
 				break;
 			}
 			default:{
-				
+				System.out.println("Invalid input. Please try again.");
 				break;
 			}
 			
