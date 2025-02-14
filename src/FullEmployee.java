@@ -20,8 +20,10 @@ public class FullEmployee extends Employee{
 		//null constructor
 	}
 
-	public FullEmployee(int employeeID, String name, int age, String gender, String status, Role role) {
+	public FullEmployee(int employeeID, String name, int age, String gender, String status, Role role, int fullHours, double fullAmHour) {
 		super(employeeID, name, age, gender, status, role);
+		this.fullHours = fullHours;
+		this.fullAmHour = fullAmHour;
 	}
 
 	public int getFullHours() {

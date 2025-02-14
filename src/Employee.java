@@ -77,11 +77,6 @@ public class Employee implements Serializable {
 			}
 			//
 			System.out.println("-----------------------------------------");
-			
-			//role.printRoleDetails();//using instance object to call printRoleDetails in Role class
-			
-			//PartEmployee.printPartEmployee();
-			//}
 	}
 	
 	public int getEmployeeID() {
