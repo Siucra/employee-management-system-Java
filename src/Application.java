@@ -100,7 +100,7 @@ public class Application {
 			}
 			
 		}
-		employeeMenu();
+		//employeeMenu();
 	}
 
 
@@ -287,11 +287,76 @@ public class Application {
 	}
 	
 	public static void viewAllEmployeeDetails() {
-		for(Employee e: employeeDirectory) {
-			e.viewEmployeeDetails();
+		//for(Employee e: employeeDirectory) {
+			//e.viewEmployeeDetails();
+		//}
+		
+		//view each employee variable?
+		System.out.println("*".repeat(20));//repeat * 20 times
+		System.out.println("1 - View All Names.");
+		System.out.println("2 - View All Ages.");
+		System.out.println("3 - View All Genders.");
+		System.out.println("4 - View All Status.");
+		System.out.println("5 - View All Roles.");
+		System.out.println("6 - View All Salaries.");
+		System.out.println("7 - View All Part Time Employees.");
+		System.out.println("8 - View All Full Time Employees.");
+		System.out.println("0 - Return to Main Menu.");
+		System.out.println("*".repeat(20));//repeat * 20 times
+		
+		switch(input.next()) {
+			case"1":{
+				System.out.println("NAMES:\n");
+				for(Employee e: employeeDirectory) {
+					System.out.println("-".repeat(12));
+					System.out.println(e.getName());
+					System.out.println("-".repeat(12));
+				}
+				break;
+			}
+			case"2":{
+				System.out.println("AGES:\n");
+				for(Employee e: employeeDirectory) {
+					System.out.println("-".repeat(12));
+					System.out.println(e.getAge());
+					System.out.println("-".repeat(12));
+				}
+				break;
+			}
+			case"3":{
+				int maleCount = 0;
+				int femaleCount = 0;
+				for(Employee e: employeeDirectory) {
+					System.out.println("GENDERS:\n");
+					System.out.println("-".repeat(12));
+					System.out.println(e.getGender());
+					if(e.getGender().equalsIgnoreCase("Male")) {
+						maleCount++;
+					}
+					else if(e.getGender().equalsIgnoreCase("Female")) {
+						femaleCount++;
+					}
+					System.out.println("-".repeat(12));
+				}
+				
+				System.out.println("Total Male:" + maleCount);
+				System.out.println("Total Female:"+femaleCount);
+				
+				break;
+			}
+			case"4":{
+				System.out.println("STATUS:\n");
+				for(Employee e: employeeDirectory) {
+					System.out.println("-".repeat(12));
+					System.out.println(e.getStatus());
+					System.out.println("-".repeat(12));
+				}
+				break;
+			}
 		}
 		
 		
+		viewAllEmployeeDetails();
 	}
 
 
