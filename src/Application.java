@@ -287,22 +287,17 @@ public class Application {
 	}
 	
 	public static void viewAllEmployeeDetails() {
-		//for(Employee e: employeeDirectory) {
-			//e.viewEmployeeDetails();
-		//}
-		
-		//view each employee variable?
-		System.out.println("*".repeat(20));//repeat * 20 times
+		System.out.println("*".repeat(30));//repeat * 30 times
 		System.out.println("1 - View All Names.");
 		System.out.println("2 - View All Ages.");
 		System.out.println("3 - View All Genders.");
 		System.out.println("4 - View All Status.");
 		System.out.println("5 - View All Roles.");
 		System.out.println("6 - View All Salaries.");
-		System.out.println("7 - View All Part Time Employees.");
-		System.out.println("8 - View All Full Time Employees.");
+		System.out.println("7 - View Total Part Time Employees.");
+		System.out.println("8 - View Total Full Time Employees.");
 		System.out.println("0 - Return to Main Menu.");
-		System.out.println("*".repeat(20));//repeat * 20 times
+		System.out.println("*".repeat(30));//repeat * 30 times
 		
 		switch(input.next()) {
 			case"1":{
@@ -326,39 +321,117 @@ public class Application {
 			case"3":{
 				int maleCount = 0;
 				int femaleCount = 0;
+				System.out.println("GENDERS:\n");
 				for(Employee e: employeeDirectory) {
-					System.out.println("GENDERS:\n");
 					System.out.println("-".repeat(12));
-					System.out.println(e.getGender());
 					if(e.getGender().equalsIgnoreCase("Male")) {
 						maleCount++;
+						System.out.println("MALE TOTAL: "+maleCount);
 					}
 					else if(e.getGender().equalsIgnoreCase("Female")) {
 						femaleCount++;
+						System.out.println("FEMALE TOTAL: "+femaleCount);
 					}
 					System.out.println("-".repeat(12));
 				}
 				
-				System.out.println("Total Male:" + maleCount);
-				System.out.println("Total Female:"+femaleCount);
+				System.out.println("Total Male Employees: " + maleCount);
+				System.out.println("Total Female Employees: "+femaleCount);
 				
 				break;
 			}
 			case"4":{
-				System.out.println("STATUS:\n");
+				int seniorCount = 0;
+				int juniorCount = 0;
+				System.out.println("STATUS:");
 				for(Employee e: employeeDirectory) {
 					System.out.println("-".repeat(12));
-					System.out.println(e.getStatus());
+					if(e.getStatus().equalsIgnoreCase("Senior")) {
+						seniorCount++;
+						System.out.println("Total Senior Status Employees: "+seniorCount);
+					}
+					else if(e.getStatus().equalsIgnoreCase("Junior")) {
+						juniorCount++;
+						System.out.println("Total Junior Status Employees: "+juniorCount);
+					}
 					System.out.println("-".repeat(12));
 				}
 				break;
 			}
+			case"5":{
+				System.out.println("Roles:\n");
+				for(Employee e: employeeDirectory) {
+					System.out.println("-".repeat(12));
+					System.out.println(e.getRole().getTitle());
+					System.out.println("-".repeat(12));
+				}
+				break;
+			}
+			case"6":{
+				System.out.println("Salaries:");
+				for(Employee e: employeeDirectory) {
+					System.out.println("-".repeat(18));
+					if(e instanceof PartEmployee) {
+						System.out.println("Part Time Employees");
+						System.out.println("-".repeat(12));
+						System.out.println("ID: "+ e.getEmployeeID() + " - "+ e.getName());
+						System.out.println(e.getRole().getTitle());
+						System.out.println(e.getRole().getSalary()+ " Annual");
+					}
+					else if(e instanceof FullEmployee) {
+						System.out.println("Full Time Employees");
+						System.out.println("-".repeat(12));
+						System.out.println("ID: "+ e.getEmployeeID() + " - " + e.getName());
+						System.out.println(e.getRole().getTitle());
+						System.out.println(e.getRole().getSalary()+ " Annual");
+					}
+					
+					System.out.println("-".repeat(18));
+				}
+				break;
+			}
+			case"7":{
+				int partEmpTotal = 0;
+				
+				for(Employee e: employeeDirectory) {
+					//.getClass checks if PartEmployee is the EXACT class, not subclass (like instanceof)
+					if(e.getClass() == PartEmployee.class) {
+					partEmpTotal++;
+					}
+				}
+				System.out.println("-".repeat(12));
+				System.out.println("Total Part Time Employees: "+partEmpTotal);
+				System.out.println("-".repeat(12));
+				break;
+				
+			}
+			case"8":{//
+				int fullEmpTotal = 0;
+				
+				for(Employee e: employeeDirectory) {
+					//.getClass checks if PartEmployee is the EXACT class, not subclass (like instanceof)
+					if(e.getClass() == FullEmployee.class) {
+						fullEmpTotal++;
+					}
+				}
+					System.out.println("-".repeat(12));
+					System.out.println("Total Full Time Employees: "+ fullEmpTotal);
+					System.out.println("-".repeat(12));
+				
+				break;
+			}
+			case"0":{
+				System.out.println("Returning to Main Menu....");
+				employeeMenu();
+				break;
+			}
+			default:{
+				System.out.println("Invalid input. Please try again.");
+			}
 		}
-		
-		
 		viewAllEmployeeDetails();
+	
 	}
-
 
 		
 	
