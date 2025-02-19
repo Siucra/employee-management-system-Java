@@ -82,7 +82,8 @@ public class Application {
 				break;
 			}
 			case 2:{
-				System.out.println("Loading...");			
+				System.out.println("Loading...");
+				editEmployee();
 				break;
 			}
 			case 3:{
@@ -102,7 +103,6 @@ public class Application {
 		}
 		//employeeMenu();
 	}
-
 
 	public static void addEmployeeMenu() throws IOException{
 		//add employee as a whole
@@ -191,7 +191,7 @@ public class Application {
 		addPartEmpConfirmation(partEmp);
 	}
 
-	private static void addPartEmpConfirmation(PartEmployee part) {
+	public static void addPartEmpConfirmation(PartEmployee part) {
 		System.out.println("*".repeat(20));//repeat * 20 times
 		
 		System.out.println("ID: "+ part.getEmployeeID() );
@@ -433,6 +433,45 @@ public class Application {
 	
 	}
 
+	public static void editEmployee() {
+		while (true) {//loops the method until condition is met
+			for(Employee e: employeeDirectory) {
+				System.out.println("-".repeat(12));
+				e.viewEmployeeDetails();
+				System.out.println("-".repeat(12));
+			}
+			
+			System.out.println("Enter Employee ID you wish to Edit.");
+			if(!input.hasNextInt()) {
+				System.out.println("Invalid input. Please  try again.");
+				input.nextLine(); //Clear the invalid input to prevent issues
+				return;
+			}
+			
+			int idToEdit = input.nextInt();
+			input.nextLine(); // Clear newline left in buffer
+			boolean idIsFound = false;
+			
+			for(Employee e: employeeDirectory) {
+				if(e.getEmployeeID() == idToEdit) {
+					idIsFound = true;
+					editEmployeeMenu(e);
+					return;
+				}
+			}
+			
+			if (!idIsFound) {
+		        System.out.println("Employee ID not found. Please try again.");
+			}
+		}
+	}
+
+	public static void editEmployeeMenu(Employee e) {
+		System.out.println("test");
 		
-	
+	}
+		
 }
+	
+	
+
