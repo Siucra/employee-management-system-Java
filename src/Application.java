@@ -518,6 +518,7 @@ public class Application {
 					switch(input.next()) {
 						case"1":{
 							System.out.println("Name successfully changed to "+ newName);
+							e.setName(newName);
 							break;
 						}
 						case"2":{
@@ -534,17 +535,19 @@ public class Application {
 			case"2":{
 				System.out.println("Enter a new Age for "+e.getAge());
 				int newAge = input.nextInt();
+				
 				//User Confirmation
-				System.out.println("Are you sure you want to change this Employee's age from "+e.getAge()+ " to "+newAge+" ?");
+				System.out.println("Are you sure you want to change " + e.getName()+"'s age from "+e.getAge()+ " to "+newAge+" ?");
 				System.out.println("1 - YES");
 				System.out.println("2 - NO");
 				switch(input.next()) {
 					case"1":{
-						
+						System.out.println("Age successfully changed to "+ newAge);
+						e.setAge(newAge);
 						break;
 					}
 					case"2":{
-						
+						System.out.println("Age change cancelled. Keeping "+e.getAge());
 						break;
 					}
 					default:{
@@ -553,7 +556,98 @@ public class Application {
 					}
 					
 				}
+				break;
+			}
+			case"3":{
+				System.out.println("Enter new Gender for "+e.getName());
+				String newGender;
 				
+				while(true) {
+					newGender = input.next();
+					if(newGender.equalsIgnoreCase("Male")|| newGender.equalsIgnoreCase("Female")) {
+						break;//exit loop if input is valid
+					}
+					else {
+						System.out.println("Invalid Gender Input. Please try again.");
+						}
+					}
+				System.out.println("Are you sure you want to change "+e.getName()+"'s gender from "+e.getGender()+" to "+newGender+" ?");	
+				System.out.println("1 - YES");
+				System.out.println("2 - NO");
+					switch(input.next()) {
+						case"1":{
+							System.out.println("Gender successfully changed to "+newGender);
+							e.setGender(newGender);
+							break;
+							}
+						case"2":{
+							System.out.println("Gender change cancelled. Keeping "+e.getGender());
+							break;
+							}
+						default:{
+							System.out.println("Invalid input. Please try again.");
+							break;
+							}
+						}
+				break;
+			}
+			case"4":{
+				System.out.println("Enter a new Employee Status to replace "+ e.getName()+"'s" + "Status: "+e.getStatus());
+				String newStatus;
+				while(true) {
+					newStatus = input.next();
+					if(newStatus.equalsIgnoreCase("Junior")||newStatus.equalsIgnoreCase("Senior")) {
+						break;
+					}
+					else {
+						System.out.println("Invalid Status input. Please try again.");
+					}
+				}
+				System.out.println("Are you sure you want to change "+e.getName()+"'s status from "+e.getStatus()+" to "+newStatus+" ?");	
+				System.out.println("1 - YES");
+				System.out.println("2 - NO");
+				switch(input.next()) {
+					case"1":{
+						System.out.println("Status successfully changed to "+newStatus);
+						e.setStatus(newStatus);
+						break;
+					}
+					case"2":{
+						System.out.println("Status change cancelled.");
+						break;
+					}
+					default:{
+						System.out.println("Invalid input. Please try again.");
+						break;
+					}
+				}
+				break;
+			}
+			case"5":{
+				System.out.println("Enter new role to replace "+e.getName()+"'s role"+e.getRole() );
+				//Role newRole
+				
+				System.out.println("Are you sure you want to change " + e.getName()+"'s Role from "+e.getRole()+ " to "+newRole+" ?");
+				System.out.println("1 - YES");
+				System.out.println("2 - NO");
+				
+				switch(input.next()) {
+					case"1":{
+					System.out.println("Role successfully changed to "+newRole);
+					e.setRole(newRole);
+						break;
+					}
+				}
+				break;
+			}
+			case"m","M":{
+				System.out.println("Returning to main menu....");
+				employeeMenu();
+				break;
+			}
+			
+			default:{
+				System.out.println("Invalid input. Please try again.");
 				break;
 			}
 		}
