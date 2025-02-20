@@ -443,7 +443,7 @@ public class Application {
 			
 			System.out.println("Enter Employee ID you wish to Edit.");
 			if(!input.hasNextInt()) {
-				System.out.println("Invalid input. Please  try again.");
+				System.out.println("Invalid input. Please try again.");
 				input.nextLine(); //Clear the invalid input to prevent issues
 				return;
 			}
@@ -455,8 +455,37 @@ public class Application {
 			for(Employee e: employeeDirectory) {
 				if(e.getEmployeeID() == idToEdit) {
 					idIsFound = true;
-					editEmployeeMenu(e);
-					return;
+					//user confirmation
+					System.out.println("You have selected "+e.getName() +", ID: "+e.getEmployeeID());
+					System.out.println("Are you sure you want to edit this Employee?");
+					System.out.println("-".repeat(25));
+					System.out.println("1 - YES");
+					System.out.println("2 - NO");
+					System.out.println("-".repeat(25));
+					
+					switch(input.next()){
+						case"1":{
+							System.out.println("*".repeat(20));
+							System.out.println("Loading Edit Menu.....");
+								try {
+									editEmployeeMenu(e);
+									} 
+								catch (IOException e1) {
+									System.out.println("An error has occured. please try again.");
+								}
+								return;
+						}
+						case"2":{
+							System.out.println("*".repeat(30));
+							System.out.println("Returning to Main Menu....");
+							employeeMenu();
+							return;
+						}
+						default:{
+							System.out.println("Invalid Input.");
+							return;
+						}
+					}
 				}
 			}
 			
@@ -466,10 +495,71 @@ public class Application {
 		}
 	}
 
-	public static void editEmployeeMenu(Employee e) {
-		System.out.println("test");
-		
+	public static void editEmployeeMenu(Employee e) throws IOException {
+		System.out.println("*".repeat(30));
+		System.out.println("1 - Edit Employee Name.");
+		System.out.println("2 - Edit Employee Age.");
+		System.out.println("3 - Edit Employee Gender.");
+		System.out.println("4 - Edit Employee Status.");
+		System.out.println("5 - Edit Employee Role.");
+		System.out.println("6 - Edit Employee Salary.");
+		System.out.println("M - Return to Main Menu.");
+		//System.out.println("7 - Edit Employee Contract");//part or full time?
+		System.out.println("*".repeat(30));
+		switch(input.next()) {
+			case"1":{
+				System.out.println("Enter a new name for "+ e.getName());
+				String newName = reader.readLine();
+				
+				//User Confirmation
+				System.out.println("Are you sure you want to change this Employee's name from "+e.getName()+ " to "+newName+" ?");
+				System.out.println("1 - YES");
+				System.out.println("2 - NO");
+					switch(input.next()) {
+						case"1":{
+							System.out.println("Name successfully changed to "+ newName);
+							break;
+						}
+						case"2":{
+							System.out.println("Name change cancelled. Keeping "+ e.getName());
+							break;
+						}
+						default:{
+							System.out.println("Invalid Input. Please try again.");
+							break;
+						}
+					}
+				break;
+			}
+			case"2":{
+				System.out.println("Enter a new Age for "+e.getAge());
+				int newAge = input.nextInt();
+				//User Confirmation
+				System.out.println("Are you sure you want to change this Employee's age from "+e.getAge()+ " to "+newAge+" ?");
+				System.out.println("1 - YES");
+				System.out.println("2 - NO");
+				switch(input.next()) {
+					case"1":{
+						
+						break;
+					}
+					case"2":{
+						
+						break;
+					}
+					default:{
+						System.out.println("Invalid Input. Please try again.");
+						break;
+					}
+					
+				}
+				
+				break;
+			}
+		}
+		editEmployee();	
 	}
+	
 		
 }
 	
