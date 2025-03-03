@@ -1,12 +1,6 @@
 
 public class PartEmployee extends Employee {
-	//class for part time employees
-	//inherits values from Parent class
-	
-	//part time hours
-	//amount per hour
-	
-	//part time hours !>30
+
 	private static final long serialVersionUID = 1L;
 
 	private int partHours;

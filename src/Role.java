@@ -1,12 +1,5 @@
 public class Role{//PARENT CLASS
-	/**
-	 *
-	/*
-	 * title
-	 * hours Worked*** might remove))
-	 * salary
-	 * 
-	 * */
+
 	private String title;
 	private String salary;
 	

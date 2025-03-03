@@ -5,28 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Application {
-//Employee management system functionality
-	/**
-	 * -add employee
-	 * -edit employee: role, salary, status
-	 * -remove ("fire") employee
-	 * -view employee (just one) or all employee
-	 * -view employee: role, salary status
-	 * 
-	 * Employee - 
-	 * Job - role, hrs etc 
-	 * Status - penalty points etc 
-	 * Desc - physical appearance etc (maybe unneeded)
-	 * 
-	 * 
-	 * Types of employees: (inheritance?)
-	 * part time 
-	 * full time
-	 * intern
-	 * 
-	 */
 
-	//company statistics method for admin?
 	static int centralID = 003;
 	static Scanner input = new Scanner(System.in);
 	static ArrayList<Employee>employeeDirectory = new ArrayList<Employee>();
@@ -53,13 +32,6 @@ public class Application {
 		employeeDirectory.add(jen);
 		
 	}
-	
-	//verify user before application's functionality
-	//public static void verifyUser() {
-		//System.out.println("*********************************************");
-		//System.out.println("Enter ");
-		//System.out.println("*********************************************");
-	//}
 	
 	public static void employeeMenu() {
 		System.out.println("*".repeat(25));;
@@ -102,12 +74,9 @@ public class Application {
 			}
 			
 		}
-		//employeeMenu();
 	}
 
 	public static void addEmployeeMenu() throws IOException{
-		//add employee as a whole
-		//show total employee amount
 		
 		System.out.println("-".repeat(18));
 		Employee e = new Employee();
@@ -132,8 +101,6 @@ public class Application {
                 System.out.println("Invalid input. Please enter 'Male' or 'Female'.");
             }
         }
-
-		//Role r = new Role();//instantiating so we can access Role class INSTANTIATION	
 		
 		while (true) {
 			System.out.println("Enter Employee status: Junior/Senior");
@@ -179,8 +146,9 @@ public class Application {
 		int pthInput = input.nextInt();
 		
 		//check if user input is between 15-30
-			if(pthInput<15 || pthInput>30) {
+			while(pthInput<15 || pthInput>30) {
 				System.out.println("Invalid hours. Please try again.");
+				pthInput = input.nextInt(); // Read again if input was invalid
 			}
 			
 		System.out.println("Enter amount per hour.");
@@ -237,8 +205,9 @@ public class Application {
 	public static void addFullEmployee(Employee e, Role role) {
 		System.out.println("Add full time hours: Must be 30-40");
 		int fthInput = input.nextInt();
-			if(fthInput <30 || fthInput >40) {
+			while(fthInput <30 || fthInput >40) {
 				System.out.println("Invalid hours. Please try again.");
+				fthInput = input.nextInt();
 			}
 		
 		System.out.println("Enter Amount per Hour");
@@ -272,6 +241,7 @@ public class Application {
 				System.out.println(full.getName() +" has been added to the Employee Directory.");
 				employeeDirectory.add(full);
 				System.out.println("Returning to Main Menu...");
+				employeeMenu();
 				break;
 			}
 			case"2":{
@@ -282,8 +252,7 @@ public class Application {
 			default:{
 				System.out.println("Invalid input please try again.");
 				break;
-			}
-			
+			}	
 		}
 	}
 	
@@ -495,69 +464,6 @@ public class Application {
 			}
 		}
 	}
-	
-	private static void fireEmployee() {
-		while (true) {//loops the method until condition is met
-			for(Employee e: employeeDirectory) {
-				System.out.println("-".repeat(12));
-				e.viewEmployeeDetails();
-				System.out.println("-".repeat(12));
-			}
-			
-			System.out.println("Enter Employee ID you wish to Fire.");
-			if(!input.hasNextInt()) {
-				System.out.println("Invalid input. Please try again.");
-				input.nextLine(); //Clear the invalid input to prevent issues
-				return;
-			}
-			
-			int idToFire = input.nextInt();
-			input.nextLine(); // Clear newline left in buffer
-			boolean idIsFound = false;
-			
-			for(Employee e: employeeDirectory) {
-				if(e.getEmployeeID() == idToFire) {
-					idIsFound = true;
-					//user confirmation
-					System.out.println("You have selected "+e.getName() +", ID: "+e.getEmployeeID());
-					System.out.println("Are you sure you want to fire this Employee?");
-					System.out.println("-".repeat(25));
-					System.out.println("1 - YES");
-					System.out.println("2 - NO");
-					System.out.println("-".repeat(25));
-					
-					switch(input.next()){
-						case"1":{
-							System.out.println("*".repeat(20));
-							System.out.println(e.getName() + " has been removed.");
-							employeeDirectory.remove(e);
-							System.out.println("*".repeat(20));
-							employeeMenu();
-							return;
-						}
-						case"2":{
-							System.out.println("*".repeat(30));
-							System.out.println("Returning to Main Menu....");
-							employeeMenu();
-							return;
-						}
-						default:{
-							System.out.println("Invalid Input.");
-							return;
-						}
-					}
-				}
-			}
-			
-			if (!idIsFound) {
-		        System.out.println("Employee ID not found. Please try again.");
-			}
-			
-		}
-		
-		
-	}
-
 
 	public static void editEmployeeMenu(Employee e) throws IOException {
 		System.out.println("*".repeat(30));
@@ -688,21 +594,55 @@ public class Application {
 				break;
 			}
 			case"5":{
-				System.out.println("Enter new role Title to replace "+e.getName()+"'s role");
-				Role r = new Role();
+				System.out.println("Enter new Title to replace "+e.getName()+"'s role");
+				String newTitle = input.next();
 				
-				//System.out.println("Are you sure you want to change " + e.getName()+"'s Role from "+e.getRole()+ " to "+newRole+" ?");
+					System.out.println("Are you sure you want to change " + e.getName()+"'s Role from "+e.getRole().getTitle()+ " to "+newTitle+" ?");
+					System.out.println("1 - YES");
+					System.out.println("2 - NO");
+				
+				
+				switch(input.next()) {
+					case"1":{
+						System.out.println("Title successfully changed to "+newTitle);
+						e.getRole().setTitle(newTitle);//update the title of the existing role
+						break;
+					}
+					case"2":{
+						System.out.println("Title change cancelled.");
+						break;
+					}
+					default:{
+						System.out.println("Invalid input. Please try again.");
+						break;
+					}
+					
+				}
+				break;
+			}
+			case"6":{
+				System.out.println("Enter new Salary to replace "+e.getName()+"'s Salary");
+				String newSalary = input.next();
+				
+				System.out.println("Are you sure you want to change " + e.getName()+"'s Salary from "+e.getRole().getSalary()+ " to "+newSalary+" ?");
 				System.out.println("1 - YES");
 				System.out.println("2 - NO");
 				
 				switch(input.next()) {
 					case"1":{
-					//System.out.println("Role successfully changed to "+newRole);
-					//	  ce.setRole(newRole);
+						System.out.println("Salary successfully changed to "+newSalary);
+						e.getRole().setTitle(newSalary);
+						break;
+					}
+					case"2":{
+						System.out.println("Salary change cancelled.");
+						break;
+					}
+					default:{
+						System.out.println("Invalid input. Please try again.");
 						break;
 					}
 				}
-				break;
 			}
 			case"m","M":{
 				System.out.println("Returning to main menu....");
@@ -718,10 +658,61 @@ public class Application {
 		editEmployee();	
 	}
 	
-	
-	
-		
+	public static void fireEmployee() {
+		while (true) {//loops the method until condition is met
+			for(Employee e: employeeDirectory) {
+				System.out.println("-".repeat(12));
+				e.viewEmployeeDetails();
+				System.out.println("-".repeat(12));
+			}
+			
+			System.out.println("Enter Employee ID you wish to Fire.");
+			if(!input.hasNextInt()) {
+				System.out.println("Invalid input. Please try again.");
+				input.nextLine(); //Clear the invalid input to prevent issues
+				return;
+			}
+			
+			int idToFire = input.nextInt();
+			input.nextLine(); // Clear newline left in buffer
+			boolean idIsFound = false;
+			
+			for(Employee e: employeeDirectory) {
+				if(e.getEmployeeID() == idToFire) {
+					idIsFound = true;
+					//user confirmation
+					System.out.println("You have selected "+e.getName() +", ID: "+e.getEmployeeID());
+					System.out.println("Are you sure you want to fire this Employee?");
+					System.out.println("-".repeat(25));
+					System.out.println("1 - YES");
+					System.out.println("2 - NO");
+					System.out.println("-".repeat(25));
+					
+					switch(input.next()){
+						case"1":{
+							System.out.println("*".repeat(20));
+							System.out.println(e.getName() + " has been removed.");
+							employeeDirectory.remove(e);
+							System.out.println("*".repeat(20));
+							employeeMenu();
+							return;
+						}
+						case"2":{
+							System.out.println("*".repeat(30));
+							System.out.println("Returning to Main Menu....");
+							employeeMenu();
+							return;
+						}
+						default:{
+							System.out.println("Invalid Input.");
+							return;
+						}
+					}
+				}
+			}
+			if (!idIsFound) {
+		        System.out.println("Employee ID not found. Please try again.");
+			}
+		}
+	}			
 }
-	
-	
-

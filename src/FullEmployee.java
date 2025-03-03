@@ -1,17 +1,7 @@
 
 public class FullEmployee extends Employee{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	//class for full time employees
-	//inherits values from Parent class
-	
-	//full time hours
-	//amount per hour
-	
-	//full time hours !>40
 	
 	private int fullHours;
 	private double fullAmHour;

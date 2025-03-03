@@ -2,34 +2,13 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Employee implements Serializable {
-	/**
-	 * 
-	 *
-	private static final long serialVersionUID = 1L;
-	/*
-	 * -add employee
-	 * -edit employee: role, salary, status
-	 * -remove ("fire") employee
-	 * -view employee (just one) or all employee
-	 * -view employee: role, salary status
-	 * 
-	 * 
-	 * what would an employee have in general
-	 * -unique ID
-	 * - name
-	 * - age
-	 * - gender
-	 * ---should these be inherited?
-	 * */
 	
 	private int employeeID;
 	private String name;
 	private int age;
 	private String gender;
-	private String status; //junior, senior
+	private String status;
 	private Role role;
-	//private type Type (part time, full time INHERITED CLASS)
-	
 	
 	public Employee() {
 		//null constructor
@@ -42,11 +21,7 @@ public class Employee implements Serializable {
 		this.status = status;
 		this.role = role;
 	}
-	
-	//public void showAllEmployee() {
-		
-	//}
-	
+
 	public void viewEmployeeDetails(){
 		//for(Employee e : Application.employeeDirectory) {
 			System.out.println("-------------------------------------");
