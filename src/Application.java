@@ -87,7 +87,8 @@ public class Application {
 				break;
 			}
 			case 3:{
-				System.out.println("Loading...");	
+				System.out.println("Loading...");
+				fireEmployee();
 				break;
 			}
 			case 4:{
@@ -494,6 +495,69 @@ public class Application {
 			}
 		}
 	}
+	
+	private static void fireEmployee() {
+		while (true) {//loops the method until condition is met
+			for(Employee e: employeeDirectory) {
+				System.out.println("-".repeat(12));
+				e.viewEmployeeDetails();
+				System.out.println("-".repeat(12));
+			}
+			
+			System.out.println("Enter Employee ID you wish to Fire.");
+			if(!input.hasNextInt()) {
+				System.out.println("Invalid input. Please try again.");
+				input.nextLine(); //Clear the invalid input to prevent issues
+				return;
+			}
+			
+			int idToFire = input.nextInt();
+			input.nextLine(); // Clear newline left in buffer
+			boolean idIsFound = false;
+			
+			for(Employee e: employeeDirectory) {
+				if(e.getEmployeeID() == idToFire) {
+					idIsFound = true;
+					//user confirmation
+					System.out.println("You have selected "+e.getName() +", ID: "+e.getEmployeeID());
+					System.out.println("Are you sure you want to fire this Employee?");
+					System.out.println("-".repeat(25));
+					System.out.println("1 - YES");
+					System.out.println("2 - NO");
+					System.out.println("-".repeat(25));
+					
+					switch(input.next()){
+						case"1":{
+							System.out.println("*".repeat(20));
+							System.out.println(e.getName() + " has been removed.");
+							employeeDirectory.remove(e);
+							System.out.println("*".repeat(20));
+							employeeMenu();
+							return;
+						}
+						case"2":{
+							System.out.println("*".repeat(30));
+							System.out.println("Returning to Main Menu....");
+							employeeMenu();
+							return;
+						}
+						default:{
+							System.out.println("Invalid Input.");
+							return;
+						}
+					}
+				}
+			}
+			
+			if (!idIsFound) {
+		        System.out.println("Employee ID not found. Please try again.");
+			}
+			
+		}
+		
+		
+	}
+
 
 	public static void editEmployeeMenu(Employee e) throws IOException {
 		System.out.println("*".repeat(30));
@@ -624,17 +688,17 @@ public class Application {
 				break;
 			}
 			case"5":{
-				System.out.println("Enter new role to replace "+e.getName()+"'s role"+e.getRole() );
-				//Role newRole
+				System.out.println("Enter new role Title to replace "+e.getName()+"'s role");
+				Role r = new Role();
 				
-				System.out.println("Are you sure you want to change " + e.getName()+"'s Role from "+e.getRole()+ " to "+newRole+" ?");
+				//System.out.println("Are you sure you want to change " + e.getName()+"'s Role from "+e.getRole()+ " to "+newRole+" ?");
 				System.out.println("1 - YES");
 				System.out.println("2 - NO");
 				
 				switch(input.next()) {
 					case"1":{
-					System.out.println("Role successfully changed to "+newRole);
-					e.setRole(newRole);
+					//System.out.println("Role successfully changed to "+newRole);
+					//	  ce.setRole(newRole);
 						break;
 					}
 				}
@@ -653,6 +717,8 @@ public class Application {
 		}
 		editEmployee();	
 	}
+	
+	
 	
 		
 }
