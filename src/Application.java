@@ -22,6 +22,7 @@ public class Application {
 		
 		//role and employee prepopulated seperately since there is no inheritance
 		Role r1 = new Role("Maintenance","50000");
+		
 		//prepopulate employees
 		FullEmployee bob = new FullEmployee(001,"Bob",59,"Male","Senior",r1, 40, 18.05);
 		employeeDirectory.add(bob);
@@ -70,7 +71,8 @@ public class Application {
 			}
 			default:{
 				System.out.println("Invalid input please try again.");
-				//loop back
+				employeeMenu(); //recursion
+				break;
 			}
 			
 		}
