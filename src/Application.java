@@ -340,7 +340,7 @@ public class Application {
 				break;
 			}
 			case"6":{
-				System.out.println("Salaries:");
+				System.out.println("Salaries:\n");
 				for(Employee e: employeeDirectory) {
 					System.out.println("-".repeat(18));
 					if(e instanceof PartEmployee) {
