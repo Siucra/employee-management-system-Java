@@ -1,13 +1,13 @@
 public class Role{//PARENT CLASS
 
 	private String title;
-	private String salary;
+	private double salary;
 	
 	public Role() {
 		//null constructor
 	}
 
-	public Role(String title,String salary) {
+	public Role(String title,double salary) {
 		//super();
 		this.title = title;
 		this.salary = salary;
@@ -24,11 +24,11 @@ public class Role{//PARENT CLASS
 	}
 
 
-	public String getSalary() {
+	public double getSalary() {
 		return salary;
 	}
 
-	public void setSalary(String salary) {
+	public void setSalary(double salary) {
 		this.salary = salary;
 	}
 	

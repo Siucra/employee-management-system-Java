@@ -21,14 +21,14 @@ public class Application {
 	public static void prepopulate() {
 		
 		//role and employee prepopulated seperately since there is no inheritance
-		Role r1 = new Role("Maintenance","50000");
+		Role r1 = new Role("Maintenance",50000);
 		
 		//prepopulate employees
 		FullEmployee bob = new FullEmployee(001,"Bob",59,"Male","Senior",r1, 40, 18.05);
 		employeeDirectory.add(bob);
 		
 		//PartEmployee bob = 
-		Role r2 = new Role("Janitor","300000");
+		Role r2 = new Role("Janitor",300000);
 		PartEmployee jen = new PartEmployee(002,"Jen",21,"Female","Junior",r2,20,15.50);
 		employeeDirectory.add(jen);
 		
@@ -119,7 +119,7 @@ public class Application {
 		role.setTitle(input.next());
 		
 		System.out.println("Enter Employee annual salary");
-		role.setSalary(input.next());
+		role.setSalary(input.nextDouble());
 		
 		while(true) {
 			System.out.println("-".repeat(20));
@@ -627,7 +627,7 @@ public class Application {
 			}
 			case"6":{
 				System.out.println("Enter new Salary to replace "+e.getName()+"'s Salary");
-				String newSalary = input.next();
+				double newSalary = input.nextDouble();
 				
 				System.out.println("Are you sure you want to change " + e.getName()+"'s Salary from "+e.getRole().getSalary()+ " to "+newSalary+" ?");
 				System.out.println("1 - YES");
