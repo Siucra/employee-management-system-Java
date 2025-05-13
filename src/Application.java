@@ -130,13 +130,16 @@ public class Application {
 				if(empType.equalsIgnoreCase("Part")){
 						System.out.println("'Part' option has been selected.");//validation message
 						addPartEmployee(e, role);
+						break;
 					}
 				else if(empType.equalsIgnoreCase("Full")) {
 					System.out.println("'Full' option has been selected");//validation message
 					addFullEmployee(e,role);
+					break;
 				}
 				else {
 					System.out.println("Invalid input. Please try again.");
+					break;
 				}	
 			}
 
@@ -633,7 +636,7 @@ public class Application {
 				switch(input.next()) {
 					case"1":{
 						System.out.println("Salary successfully changed to "+newSalary);
-						e.getRole().setTitle(newSalary);
+						e.getRole().setSalary(newSalary);
 						break;
 					}
 					case"2":{
