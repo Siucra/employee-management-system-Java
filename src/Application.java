@@ -648,6 +648,7 @@ public class Application {
 						break;
 					}
 				}
+				break;
 			}
 			case"m","M":{
 				System.out.println("Returning to main menu....");
