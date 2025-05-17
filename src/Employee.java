@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Employee implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
 	private int employeeID;
 	private String name;
 	private int age;

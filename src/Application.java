@@ -252,6 +252,7 @@ public class Application {
 			case"2":{
 				System.out.println("Employee discarded.");//confirmation message, remove later
 				System.out.println("Returning to Main Menu...");
+				employeeMenu();
 				break;
 			}
 			default:{
