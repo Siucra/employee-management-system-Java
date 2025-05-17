@@ -72,7 +72,6 @@ public class Application {
 			default:{
 				System.out.println("Invalid input please try again.");
 				employeeMenu(); //recursion
-				break;
 			}
 			
 		}
@@ -651,7 +650,7 @@ public class Application {
 				}
 				break;
 			}
-			case"m","M":{
+			case"m": case "M":{
 				System.out.println("Returning to main menu....");
 				employeeMenu();
 				break;
